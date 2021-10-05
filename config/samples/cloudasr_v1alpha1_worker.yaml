@@ -1,0 +1,10 @@
+apiVersion: cloudasr.smartcommunitylab.it/v1alpha1
+kind: Worker
+metadata:
+  name: worker-it-operator
+spec:
+  # Add fields here
+  replicas: 2
+  kaldiImage: "smartcommunitylab/cloud-asr-worker-it-small:kaldi-prodtime"
+  pythonImage: "smartcommunitylab/cloud-asr-worker:python3-pydub"
+  modelName: it-small

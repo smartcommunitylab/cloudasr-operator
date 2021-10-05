@@ -1,0 +1,19 @@
+domain: smartcommunitylab.it
+layout:
+- go.kubebuilder.io/v3
+plugins:
+  manifests.sdk.operatorframework.io/v2: {}
+  scorecard.sdk.operatorframework.io/v2: {}
+projectName: cloudasr-operator
+repo: github.com/smartcommunitylab/cloudasr-operator
+resources:
+- api:
+    crdVersion: v1
+    namespaced: true
+  controller: true
+  domain: smartcommunitylab.it
+  group: cloudasr
+  kind: Worker
+  path: github.com/smartcommunitylab/cloudasr-operator/api/v1alpha1
+  version: v1alpha1
+version: "3"
