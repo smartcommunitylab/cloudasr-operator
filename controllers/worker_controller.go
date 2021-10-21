@@ -163,7 +163,7 @@ func (r *WorkerReconciler) serviceForWorker(m *cloudasrv1alpha1.Worker) (*corev1
 		},
 		Spec: corev1.ServiceSpec{
 			Ports: []corev1.ServicePort{
-				{Name: "http-worker", Port: 5678, Protocol: "TCP", TargetPort: intstr.FromString("http-worker")},
+				{Name: "tcp-worker", Port: 5678, Protocol: "TCP", TargetPort: intstr.FromString("tcp-worker")},
 			},
 			Selector:  ls,
 			ClusterIP: "None",
@@ -234,7 +234,7 @@ func (r *WorkerReconciler) statefulsetForWorker(m *cloudasrv1alpha1.Worker) *app
 							},
 							Ports: []corev1.ContainerPort{{
 								ContainerPort: 5678,
-								Name:          "http-worker",
+								Name:          "tcp-worker",
 							}},
 							Env: []corev1.EnvVar{{
 								Name:  "MASTER_ADDR",
@@ -254,7 +254,7 @@ func (r *WorkerReconciler) statefulsetForWorker(m *cloudasrv1alpha1.Worker) *app
 								},
 								{
 									Name:  "SERVICE_NAME",
-									Value: m.Spec.ModelName,
+									Value: "worker-" + m.Spec.ModelName,
 								},
 								{
 									Name:  "LOG_LEVEL",
